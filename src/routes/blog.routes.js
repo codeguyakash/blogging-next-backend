@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { upload } from "./../middlewares/multer.middleware.js";
 import {
   getBlogs,
   createBlog,
@@ -7,6 +8,8 @@ import {
 } from "../controllers/blog.controller.js";
 
 const router = Router();
+
+router.route("/upload").post(upload.single("post"), createBlog);
 
 router.route("/create").post(createBlog);
 router.route("/blogs").get(getBlogs);

@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
+import { upload } from "./middlewares/multer.middleware.js";
 
 const app = express();
 
@@ -9,6 +11,8 @@ app.use(
     credentials: true,
   })
 );
+app.use(bodyParser.json());
+
 
 /********--import--routes--here--************************/
 import blogRouter from "./routes/blog.routes.js";

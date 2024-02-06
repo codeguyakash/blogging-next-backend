@@ -27,33 +27,28 @@ const blogShema = new Schema(
     },
     date: {
       type: Date,
-      default: Date.now,
+      default: Date.now(),
     },
     comments: [
       {
         user: {
           type: String,
-          required: true,
+          required: false,
         },
         text: {
           type: String,
-          required: true,
+          required: false,
         },
         date: {
           type: Date,
-          default: Date.now,
+          default: Date.now(),
         },
       },
     ],
-    images: [
-      {
-        url: {
-          type: String,
-          required: true,
-        },
-        caption: String,
-      },
-    ],
+    post: {
+      type: String, // cloudinary url
+      required: true,
+    },
   },
   { timestamps: true }
 );
