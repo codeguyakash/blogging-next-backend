@@ -12,21 +12,22 @@ const getBlogs = async (req, res) => {
 
 // ---------------------------------------------------------------------------------------------------
 const createBlog = async (req, res) => {
-  const { title, content, author, tags, keywords, category, comments, post } =
-    req.body;
+  const { content, author, tags, keywords, category, comments, post } =
+  req.body;
   const blogPostLocalPath = req.file?.path;
 
-  if (!blogPostLocalPath) {
-    throw new Error(400, "Post Required");
-  }
+  console.log(content, author, tags, keywords, category, comments, post)
 
-  const blogPost = await uploadOnCloudinary(blogPostLocalPath);
+  // if (!blogPostLocalPath) {
+  //   throw new Error(400, "Post Required");
+  // }
 
+  //   const blogPost = await uploadOnCloudinary(blogPostLocalPath);
+  //   console.log(blogPost);
   return;
-
   const blog = await Blogs.create({
     title,
-    post: blogPost.url,
+    post,
     content,
     author,
     tags,

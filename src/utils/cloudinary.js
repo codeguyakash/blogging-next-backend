@@ -13,7 +13,7 @@ const uploadOnCloudinary = async (localFilePath) => {
       upload_preset: "my_preset",
     });
     console.log("OK", response);
-    // return;
+    // return
     fs.unlink(localFilePath);
     return response;
   } catch (error) {

@@ -47,7 +47,7 @@ const blogShema = new Schema(
     ],
     post: {
       type: String, // cloudinary url
-      required: true,
+      required: "",
     },
   },
   { timestamps: true }
