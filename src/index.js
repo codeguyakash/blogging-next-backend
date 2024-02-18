@@ -7,7 +7,7 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 app.get("/", (_, res) => {
   res.status(200).json({
-    projectName: "TECHLOG.LOG",
+    projectName: "techlogs.tech",
     description: "A Blogging Website",
   });
 });
