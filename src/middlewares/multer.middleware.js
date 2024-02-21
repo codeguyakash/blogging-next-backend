@@ -4,12 +4,9 @@ const storage = multer.diskStorage({
     callBack(null, "./public/uploads");
   },
   filename: function (req, file, callBack) {
-    callBack(null, file.originalname);
+    callBack(null, `${Date.now()}-${file.originalname}`);
   },
 });
-
 export const upload = multer({
   storage,
 });
-
-

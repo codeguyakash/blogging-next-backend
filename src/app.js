@@ -11,10 +11,8 @@ app.use(
   })
 );
 
-/********--import--routes--here--************************/
 import blogRouter from "./routes/blog.routes.js";
 
-/*********--routes--declaration--here--******************/
 app.use("/api/v1/", blogRouter);
 app.use(bodyParser.json());
 

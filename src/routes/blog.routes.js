@@ -9,15 +9,9 @@ import {
 
 const router = Router();
 
-router.route("/upload").post(upload.single("post"), (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
-  res.send({ fileUpload: "Okk" });
-});
-
-router.route("/create").post(createBlog);
 router.route("/blogs").get(getBlogs);
-router.route("/update").put(updateBlog);
-router.route("/delete").delete(deteleBlog);
+router.route("/create").post(upload.single("blogImage"), createBlog);
+router.route("/:id").put(updateBlog);
+router.route("/:id").delete(deteleBlog);
 
 export default router;

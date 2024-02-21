@@ -1,3 +1,4 @@
 node_modules
 .env
 dns.txt
+dummy.json

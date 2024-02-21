@@ -1,53 +1,52 @@
-// import { uploadOnCloudinary } from "../utils/cloudinary.js";
-import { Blogs } from "../models/blogs.model.js";
+import { Blog } from "../models/blogs.model.js";
 
 const getBlogs = async (req, res) => {
-  const data = req.body;
-  console.log(data);
-  res.status(200).json({
-    data: data,
-    message: "getblogs",
-  });
+  try {
+    const blogs = await Blog.find({});
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
-// ---------------------------------------------------------------------------------------------------
 const createBlog = async (req, res) => {
-  const { content, author, tags, keywords, category, comments, post } =
-    req.body;
-  const blogPostLocalPath = req.file?.path;
-
-  console.log(content, author, tags, keywords, category, comments, post);
-  const blog = await Blogs.create({
-    title,
-    post,
-    content,
-    author,
-    tags,
-    keywords,
-    category,
-    comments,
-  });
-  console.log("first");
-  res.status(200).json(blog);
+  const { title, content } = req.body;
+  const filePath = req.file;
+  try {
+    const blogs = await Blog.create({
+      title,
+      content,
+      blogImage: `${filePath.path}`,
+    });
+    res.status(201).json(blogs);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
-// ---------------------------------------------------------------------------------------------------
+const updateBlog = async (req, res) => {
+  const id = req.params.id;
+  const { title, content } = req.body;
+  const updateBlog = {
+    title: title,
+    content: content,
+  };
+  try {
+    const blogs = await Blog.findByIdAndUpdate(id, updateBlog, { new: true });
+    res.status(201).json(blogs);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 const deteleBlog = async (req, res) => {
-  const data = req.body;
-  console.log(data);
-  res.status(200).json({
-    data: data,
-    message: "deleteblogs",
-  });
-};
-const updateBlog = async (req, res) => {
-  const data = req.body;
-  console.log(data);
-  res.status(200).json({
-    data: data,
-    message: "updateblogs",
-  });
+  const id = req.params.id;
+  try {
+    const blogs = await Blog.findByIdAndDelete(id);
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 export { getBlogs, createBlog, deteleBlog, updateBlog };

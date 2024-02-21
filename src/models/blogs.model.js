@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-const blogShema = new Schema(
+const blogSchema = new Schema(
   {
     title: {
       type: String,
@@ -9,48 +9,12 @@ const blogShema = new Schema(
       type: String,
       required: true,
     },
-    author: {
+    blogImage: {
       type: String,
-      required: true,
-    },
-    tags: {
-      type: [String],
-      default: [],
-    },
-    keywords: {
-      type: [String],
-      default: [],
-    },
-    category: {
-      type: Schema.Types.ObjectId,
-      ref: "Category",
-    },
-    date: {
-      type: Date,
-      default: Date.now(),
-    },
-    comments: [
-      {
-        user: {
-          type: String,
-          required: false,
-        },
-        text: {
-          type: String,
-          required: false,
-        },
-        date: {
-          type: Date,
-          default: Date.now(),
-        },
-      },
-    ],
-    post: {
-      type: String, // cloudinary url
-      required: "",
+      default: "post",
     },
   },
   { timestamps: true }
 );
 
-export const Blogs = mongoose.model("Blogs", blogShema);
+export const Blog = mongoose.model("Blog", blogSchema);
