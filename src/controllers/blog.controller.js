@@ -1,4 +1,4 @@
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+// import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Blogs } from "../models/blogs.model.js";
 
 const getBlogs = async (req, res) => {
@@ -13,18 +13,10 @@ const getBlogs = async (req, res) => {
 // ---------------------------------------------------------------------------------------------------
 const createBlog = async (req, res) => {
   const { content, author, tags, keywords, category, comments, post } =
-  req.body;
+    req.body;
   const blogPostLocalPath = req.file?.path;
 
-  console.log(content, author, tags, keywords, category, comments, post)
-
-  // if (!blogPostLocalPath) {
-  //   throw new Error(400, "Post Required");
-  // }
-
-  //   const blogPost = await uploadOnCloudinary(blogPostLocalPath);
-  //   console.log(blogPost);
-  return;
+  console.log(content, author, tags, keywords, category, comments, post);
   const blog = await Blogs.create({
     title,
     post,
