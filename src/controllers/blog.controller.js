@@ -1,4 +1,6 @@
 import { Blog } from "../models/blogs.model.js";
+// import cloudinary from "cloudinary";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const getBlogs = async (req, res) => {
   try {
@@ -11,15 +13,23 @@ const getBlogs = async (req, res) => {
 
 const createBlog = async (req, res) => {
   const { title, content } = req.body;
-  const filePath = req.file;
+  const blogPostfilePath = req.file.path;
+
+  //upload files on cloudinary
   try {
+    const blogPostUrl = await uploadOnCloudinary(blogPostfilePath);
+
+    if (!blogPostUrl.url) {
+      throw new Error("Post Required");
+    }
     const blogs = await Blog.create({
       title,
       content,
-      blogImage: `${filePath.path}`,
+      blogImage: `${blogPostUrl.url}`,
     });
     res.status(201).json(blogs);
   } catch (error) {
+    console.log(error)
     res.status(500).json(error);
   }
 };
