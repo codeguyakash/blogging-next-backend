@@ -10,6 +10,16 @@ const getBlogs = async (req, res) => {
     res.status(500).json(error);
   }
 };
+const getBlogsById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const blog = await Blog.findById(id);
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(500).json(error);
+    console.log(error);
+  }
+};
 
 const createBlog = async (req, res) => {
   const { title, content } = req.body;
@@ -29,7 +39,7 @@ const createBlog = async (req, res) => {
     });
     res.status(201).json(blogs);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json(error);
   }
 };
@@ -59,4 +69,4 @@ const deteleBlog = async (req, res) => {
   }
 };
 
-export { getBlogs, createBlog, deteleBlog, updateBlog };
+export { getBlogs, createBlog, deteleBlog, updateBlog, getBlogsById };
