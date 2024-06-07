@@ -76,7 +76,7 @@ const updateBlog = async (req, res) => {
 };
 
 // Delete a blog
-const deleteBlog = async (req, res) => {
+const deteleBlog = async (req, res) => {
   const id = req.params.id;
   try {
     const deletedBlog = await Blog.findByIdAndDelete(id);
